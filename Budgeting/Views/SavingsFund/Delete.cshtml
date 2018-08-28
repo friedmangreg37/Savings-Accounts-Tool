@@ -1,0 +1,47 @@
+﻿@model Budgeting.Models.SavingsFund
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Fund</h2>
+
+<h3>Are you sure you want to delete this fund? It's balance will be moved to the Unallocated section for this account.</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountPerMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountPerMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Breakdown", "Breakdown", "SavingsAccount", new { id = Model.AccountID }, null)
+        </div>
+    }
+</div>
