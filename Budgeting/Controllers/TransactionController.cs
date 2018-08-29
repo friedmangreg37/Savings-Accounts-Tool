@@ -28,14 +28,14 @@ namespace Budgeting.Controllers
 
             if (!ModelState.IsValid) return View();
 
-            var fund = db.SavingsFunds.Find(transaction.FundId);
-            if (fund == null) return View();
+            transaction.SavingsFund = db.SavingsFunds.Find(transaction.FundId);
+            if (transaction.SavingsFund == null) return View();
 
-            fund.Deposit(transaction.Amount);
-            db.Entry(fund).State = EntityState.Modified;
+            transaction.Apply();
+            db.Entry(transaction.SavingsFund).State = EntityState.Modified;
             db.Transactions.Add(transaction);
             db.SaveChanges();
-            return RedirectToAction("Breakdown", "SavingsAccount", new { id = fund.AccountID });
+            return RedirectToAction("Breakdown", "SavingsAccount", new { id = transaction.SavingsFund.AccountID });
         }
 
         public ActionResult Withdraw(int fundId)
@@ -52,14 +52,14 @@ namespace Budgeting.Controllers
 
             if (!ModelState.IsValid) return View();
 
-            var fund = db.SavingsFunds.Find(transaction.FundId);
-            if (fund == null) return View();
+            transaction.SavingsFund = db.SavingsFunds.Find(transaction.FundId);
+            if (transaction.SavingsFund == null) return View();
 
-            fund.Withdraw(transaction.Amount);
-            db.Entry(fund).State = EntityState.Modified;
+            transaction.Apply();
+            db.Entry(transaction.SavingsFund).State = EntityState.Modified;
             db.Transactions.Add(transaction);
             db.SaveChanges();
-            return RedirectToAction("Breakdown", "SavingsAccount", new { id = fund.AccountID });
+            return RedirectToAction("Breakdown", "SavingsAccount", new { id = transaction.SavingsFund.AccountID });
         }
     }
 }
