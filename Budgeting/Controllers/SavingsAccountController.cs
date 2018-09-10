@@ -9,14 +9,16 @@ using System.Web.Mvc;
 
 namespace Budgeting.Controllers
 {
+    [Authorize]
     public class SavingsAccountController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
         public ActionResult Index()
         {
-            return View(db.SavingsAccounts);
+            var userId = User.Identity.GetUserId();
+            var userAccounts = db.SavingsAccounts.Where(s => s.ApplicationUserId == userId).ToList();
+            return View(userAccounts);
         }
 
         // GET: SavingsAccount/Create
@@ -27,8 +29,9 @@ namespace Budgeting.Controllers
 
         // POST: SavingsAccount/Create
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create(SavingsAccount account)
+        public ActionResult Create([Bind(Include = "Id,Name,Balance")] SavingsAccount account)
         {
+            account.ApplicationUserId = User.Identity.GetUserId();
             if (!ModelState.IsValid) return View(account);
 
             db.SavingsAccounts.Add(account);
@@ -50,7 +53,7 @@ namespace Budgeting.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Breakdown(SavingsAccount account)
         {
-            if(!ModelState.IsValid) return View();
+            if(!ModelState.IsValid) return View(account);
 
             db.Entry(account).State = EntityState.Modified;
             db.SaveChanges();

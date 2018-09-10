@@ -32,7 +32,6 @@ namespace Budgeting.Models
 
         public DbSet<SavingsAccount> SavingsAccounts { get; set; }
         public DbSet<SavingsFund> SavingsFunds { get; set; }
-
         public DbSet<Transaction> Transactions { get; set; }
     }
 }

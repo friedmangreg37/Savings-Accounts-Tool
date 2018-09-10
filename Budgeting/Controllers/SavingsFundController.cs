@@ -10,6 +10,7 @@ using Budgeting.Models;
 
 namespace Budgeting.Controllers
 {
+    [Authorize]
     public class SavingsFundController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

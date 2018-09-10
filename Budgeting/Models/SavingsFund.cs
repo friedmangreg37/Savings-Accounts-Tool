@@ -20,7 +20,7 @@ namespace Budgeting.Models
         [DataType(DataType.Currency), Range(0, double.MaxValue, ErrorMessage = "Balance must be greater than or equal to $0")]
         public decimal Balance { get; set; }
 
-        [ForeignKey("Account")]
+        [Required, ForeignKey("Account")]
         public int AccountID { get; set; }
 
         public SavingsAccount Account { get; set; }
