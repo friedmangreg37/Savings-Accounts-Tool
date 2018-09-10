@@ -13,6 +13,9 @@ namespace Budgeting.Models
 
         public int Id { get; set; }
 
+        public string ApplicationUserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
         [Required, Column(TypeName = "varchar"), StringLength(25)]
         public string Name { get; set; }
 
