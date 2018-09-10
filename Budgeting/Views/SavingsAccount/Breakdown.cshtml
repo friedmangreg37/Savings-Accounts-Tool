@@ -26,11 +26,10 @@
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-1">
-                    @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label" })
+                    @Html.LabelFor(model => model.SumOfFunds)
                 </div>
                 <div class="col-md-2">
-                    @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                    @Html.DisplayFor(model => model.SumOfFunds)
                 </div>
             </div>
             @Html.HiddenFor(model => model.ApplicationUserId)
@@ -72,20 +71,6 @@
                         <td>
                             @Html.ActionLink("Delete", "Delete", "SavingsFund", new { id = fund.Id }, null)
                         </td>
-                    </tr>
-                }
-                @if (Model.UnallocatedFunds > 0)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayNameFor(model => model.UnallocatedFunds)
-                        </td>
-                        <td></td>
-                        <td>
-                            @Html.DisplayFor(model => model.UnallocatedFunds)
-                        </td>
-                        <td></td>
-                        <td></td>
                     </tr>
                 }
             </table>

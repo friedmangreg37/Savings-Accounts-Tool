@@ -18,6 +18,10 @@ namespace Budgeting.Controllers
         {
             var userId = User.Identity.GetUserId();
             var userAccounts = db.SavingsAccounts.Where(s => s.ApplicationUserId == userId).ToList();
+            foreach (var account in userAccounts)
+            {
+                account.Funds = db.SavingsFunds.Where(f => f.AccountID == account.Id).ToList();
+            }
             return View(userAccounts);
         }
 
@@ -29,7 +33,7 @@ namespace Budgeting.Controllers
 
         // POST: SavingsAccount/Create
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Balance")] SavingsAccount account)
+        public ActionResult Create([Bind(Include = "Id,Name")] SavingsAccount account)
         {
             account.ApplicationUserId = User.Identity.GetUserId();
             if (!ModelState.IsValid) return View(account);
