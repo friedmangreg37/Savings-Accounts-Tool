@@ -7,7 +7,7 @@ namespace Budgeting.Models
     {
         IDbSet<SavingsAccount> SavingsAccounts { get; set; }
         IDbSet<SavingsFund> SavingsFunds { get; set; }
-        IDbSet<Transaction> Transactions { get; set; }
+        //IDbSet<Transaction> Transactions { get; set; }
 
         int SaveChanges();
     }
@@ -26,14 +26,14 @@ namespace Budgeting.Models
 
         public IDbSet<SavingsAccount> SavingsAccounts { get; set; }
         public IDbSet<SavingsFund> SavingsFunds { get; set; }
-        public IDbSet<Transaction> Transactions { get; set; }
+        //public IDbSet<Transaction> Transactions { get; set; }
     }
 
     public class MockApplicationDbContext : IApplicationDbContext
     {
         public IDbSet<SavingsAccount> SavingsAccounts { get; set; }
         public IDbSet<SavingsFund> SavingsFunds { get; set; }
-        public IDbSet<Transaction> Transactions { get; set; }
+        //public IDbSet<Transaction> Transactions { get; set; }
 
         public int SaveChanges()
         {

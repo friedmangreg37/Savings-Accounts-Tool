@@ -27,7 +27,7 @@ namespace Budgeting.Controllers
 
             transaction.Apply();
             db.Entry(transaction.SavingsFund).State = EntityState.Modified;
-            db.Transactions.Add(transaction);
+            //db.Transactions.Add(transaction);
             db.SaveChanges();
             return RedirectToAction("Breakdown", "SavingsAccount", new { id = transaction.SavingsFund.AccountID });
         }

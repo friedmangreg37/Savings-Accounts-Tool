@@ -80,11 +80,11 @@ namespace Budgeting.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "Admin")]
-        public ActionResult BreakdownForAdmin(int id)
-        {
-            var account = db.SavingsAccounts.Find(id);
-            return View("Breakdown", account);
-        }
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult BreakdownForAdmin(int id)
+        //{
+        //    var account = db.SavingsAccounts.Find(id);
+        //    return View("Breakdown", account);
+        //}
     }
 }
