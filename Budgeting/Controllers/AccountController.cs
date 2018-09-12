@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -9,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Budgeting.Models;
+using System.Security.Claims;
 
 namespace Budgeting.Controllers
 {
@@ -155,6 +153,7 @@ namespace Budgeting.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, model.FirstName));
                     var db = new ApplicationDbContext();
                     var savingsAccount = new SavingsAccount { Name = model.Username, ApplicationUserId = user.Id };
                     db.SavingsAccounts.Add(savingsAccount);

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +9,11 @@ namespace Budgeting.Controllers
     {
         public ActionResult Index()
         {
+            // just for info, in case needed in the future:
+            var userId = User.Identity.GetUserId();
+            var manager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = manager.FindById(userId);
+
             return View();
         }
 
