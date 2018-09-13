@@ -62,10 +62,10 @@ namespace Budgeting.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required, Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required, Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required]

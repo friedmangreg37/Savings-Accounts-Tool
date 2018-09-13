@@ -34,7 +34,7 @@ namespace Budgeting.Controllers
 
         // POST: SavingsAccount/Create
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] SavingsAccount account)
+        public ActionResult Create([Bind(Include = "Id,Name,ApplicationUserId")] SavingsAccount account)
         {
             if (!ModelState.IsValid) return View(account);
 
