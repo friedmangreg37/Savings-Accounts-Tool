@@ -40,7 +40,7 @@ namespace Budgeting.UnitFixtures.Models
         {
             fundMock.Object.Balance = 100m;
             var amount = 50m;
-            transactionMock.Object.Type = Transaction.TransactionType.Withdrawal;
+            transactionMock.Object.Type = Transaction.TransactionType.Withdraw;
             transactionMock.Object.Amount = amount;
 
             transactionMock.Object.Apply();

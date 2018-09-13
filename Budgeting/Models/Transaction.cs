@@ -7,7 +7,7 @@ namespace Budgeting.Models
     {
         public enum TransactionType
         {
-            Deposit, Withdrawal
+            Deposit, Withdraw
         }
 
         public int Id { get; set; }
@@ -36,7 +36,7 @@ namespace Budgeting.Models
                 case TransactionType.Deposit:
                     SavingsFund.Deposit(Amount);
                     break;
-                case TransactionType.Withdrawal:
+                case TransactionType.Withdraw:
                     SavingsFund.Withdraw(Amount);
                     break;
                 default:

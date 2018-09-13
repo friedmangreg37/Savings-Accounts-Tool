@@ -27,7 +27,7 @@ namespace Budgeting.Validators
                 return;
             }
 
-            if (transaction.Type == Transaction.TransactionType.Withdrawal &&
+            if (transaction.Type == Transaction.TransactionType.Withdraw &&
                 transaction.Amount > transaction.SavingsFund.Balance)
             {
                 ErrorMessages.Add(INSUFFICIENT_FUNDS_ERROR_MESSAGE);

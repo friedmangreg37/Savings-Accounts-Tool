@@ -10,9 +10,9 @@ namespace Budgeting.Controllers
         public ActionResult Index()
         {
             // just for info, in case needed in the future:
-            var userId = User.Identity.GetUserId();
-            var manager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var user = manager.FindById(userId);
+            //var userId = User.Identity.GetUserId();
+            //var manager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            //var user = manager.FindById(userId);
 
             return View();
         }

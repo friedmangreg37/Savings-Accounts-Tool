@@ -32,7 +32,7 @@ namespace Budgeting.UnitFixtures.Validators
             var transaction = new Transaction
             {
                 SavingsFund = fund,
-                Type = Transaction.TransactionType.Withdrawal,
+                Type = Transaction.TransactionType.Withdraw,
                 Amount = 50
             };
             var validator = new TransactionValidator();
@@ -49,7 +49,7 @@ namespace Budgeting.UnitFixtures.Validators
             var transaction = new Transaction
             {
                 SavingsFund = fund,
-                Type = Transaction.TransactionType.Withdrawal,
+                Type = Transaction.TransactionType.Withdraw,
                 Amount = 100
             };
             var validator = new TransactionValidator();
