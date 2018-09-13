@@ -1,17 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace Budgeting.UnitFixtures.Validators
 {
-    [TestClass]
+    [TestFixture]
     public class TestUserValidator
     {
-        [TestMethod]
+        [Test]
         public void Test_Validate_IsCurrentUser_NoErrors()
         {
 
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Validate_IsNotCurrentUser_ResultsInError()
         {
 

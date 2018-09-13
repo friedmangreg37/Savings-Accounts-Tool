@@ -1,13 +1,13 @@
 ﻿using Budgeting.Models;
 using Budgeting.Validators;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Budgeting.UnitFixtures.Validators
 {
-    [TestClass]
+    [TestFixture]
     public class TestTransactionValidator
     {
-        [TestMethod]
+        [Test]
         public void Test_Validate_NormalDeposit_NoErrors()
         {
             var fund = new SavingsFund { Balance = 50 };
@@ -24,7 +24,7 @@ namespace Budgeting.UnitFixtures.Validators
             Assert.IsFalse(validator.HasErrors);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Validate_NormalWithdrawal_NoErrors()
         {
             var fund = new SavingsFund { Balance = 50 };
@@ -41,7 +41,7 @@ namespace Budgeting.UnitFixtures.Validators
             Assert.IsFalse(validator.HasErrors);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Validate_WithdrawMoreThanBalance_ResultsInError()
         {
             var fund = new SavingsFund {Balance = 50};
@@ -56,10 +56,10 @@ namespace Budgeting.UnitFixtures.Validators
             validator.Validate(transaction);
 
             Assert.IsTrue(validator.HasErrors);
-            CollectionAssert.Contains(validator.ErrorMessages, TransactionValidator.INSUFFICIENT_FUNDS_ERROR_MESSAGE);
+            Assert.Contains(TransactionValidator.INSUFFICIENT_FUNDS_ERROR_MESSAGE, validator.ErrorMessages);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Validate_NoFundAssociated_ResultsInError()
         {
             var transaction = new Transaction();
@@ -68,7 +68,7 @@ namespace Budgeting.UnitFixtures.Validators
             validator.Validate(transaction);
 
             Assert.IsTrue(validator.HasErrors);
-            CollectionAssert.Contains(validator.ErrorMessages, TransactionValidator.NO_SAVINGS_FUND_ERROR_MESSAGE);
+            Assert.Contains(TransactionValidator.NO_SAVINGS_FUND_ERROR_MESSAGE, validator.ErrorMessages);
         }
     }
 }
