@@ -1,21 +1,20 @@
-﻿using System;
-using Budgeting.Models;
-using NUnit.Framework;
+﻿using Budgeting.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Budgeting.UnitFixtures.Models
 {
-    [TestFixture]
+    [TestClass]
     public class TestSavingsFund
     {
         SavingsFund fund;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             fund = new SavingsFund();
         }
 
-        [Test]
+        [TestMethod]
         public void Test_Deposit_AmountSavedIncreasesAccordingly()
         {
             fund.Balance = 45.67m;
@@ -27,7 +26,7 @@ namespace Budgeting.UnitFixtures.Models
             Assert.AreEqual(expected, fund.Balance);
         }
 
-        [Test]
+        [TestMethod]
         public void Test_Withdraw_AmountSavedDecreasesAccordingly()
         {
             fund.Balance = 45.67m;

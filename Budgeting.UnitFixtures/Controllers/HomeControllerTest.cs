@@ -1,13 +1,13 @@
 ﻿using System.Web.Mvc;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Budgeting.Controllers;
 
 namespace Budgeting.UnitFixtures.Controllers
 {
-    [TestFixture]
+    [TestClass]
     public class HomeControllerTest
     {
-        [Test]
+        [TestMethod]
         public void Index()
         {
             // Arrange
@@ -20,7 +20,7 @@ namespace Budgeting.UnitFixtures.Controllers
             Assert.IsNotNull(result);
         }
 
-        [Test]
+        [TestMethod]
         public void About()
         {
             // Arrange
@@ -33,7 +33,7 @@ namespace Budgeting.UnitFixtures.Controllers
             Assert.AreEqual("Your application description page.", result.ViewBag.Message);
         }
 
-        [Test]
+        [TestMethod]
         public void Contact()
         {
             // Arrange

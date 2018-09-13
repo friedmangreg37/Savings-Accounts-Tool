@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Budgeting.Models;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Budgeting.UnitFixtures.Models
 {
-    [TestFixture]
+    [TestClass]
     public class TestSavingsAccount
     {
         SavingsAccount account;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             account = new SavingsAccount();
         }
 
-        [Test]
+        [TestMethod]
         public void Test_SumOfFunds_NoFunds_Returns0()
         {
             Assert.AreEqual(0, account.SumOfFunds);
         }
 
-        [Test]
+        [TestMethod]
         public void Test_SumOfFunds_OneFund_ReturnsFundBalance()
         {
             var balance = 37.42m;
@@ -32,7 +30,7 @@ namespace Budgeting.UnitFixtures.Models
             Assert.AreEqual(balance, account.SumOfFunds);
         }
 
-        [Test]
+        [TestMethod]
         public void Test_SumOfFunds_MultipleFunds_ReturnsSumOfBalances()
         {
             var balances = new decimal[] { 45.67m, 37.42m, 6.7m, 1.2m, 132.56m };

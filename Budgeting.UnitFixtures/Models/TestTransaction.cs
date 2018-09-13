@@ -1,19 +1,18 @@
-﻿using System;
-using Budgeting.Models;
+﻿using Budgeting.Models;
 using Budgeting.Validators;
 using Moq;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Budgeting.UnitFixtures.Models
 {
-    [TestFixture]
+    [TestClass]
     public class TestTransaction
     {
         private Mock<SavingsFund> fundMock;
         private Mock<TransactionValidator> validatorMock;
         private Mock<Transaction> transactionMock;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             fundMock = new Mock<SavingsFund>();
@@ -23,7 +22,7 @@ namespace Budgeting.UnitFixtures.Models
             transactionMock.Setup(t => t.GetTransactionValidator()).Returns(validatorMock.Object);
         }
 
-        [Test]
+        [TestMethod]
         public void Test_Apply_Deposit_CallsSavingsFundDeposit()
         {
             var amount = 50m;
@@ -35,7 +34,7 @@ namespace Budgeting.UnitFixtures.Models
             fundMock.Verify(f => f.Deposit(amount), Times.Once());
         }
 
-        [Test]
+        [TestMethod]
         public void Test_Apply_Withdrawal_CallsSavingsFundWithdraw()
         {
             fundMock.Object.Balance = 100m;
@@ -48,7 +47,7 @@ namespace Budgeting.UnitFixtures.Models
             fundMock.Verify(f => f.Withdraw(amount), Times.Once());
         }
 
-        [Test]
+        [TestMethod]
         public void Test_Apply_CallsValidator()
         {
             transactionMock.Object.Apply();
