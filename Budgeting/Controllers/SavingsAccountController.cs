@@ -25,14 +25,17 @@ namespace Budgeting.Controllers
         // GET: SavingsAccount/Create
         public ActionResult Create()
         {
-            return View();
+            SavingsAccount account = new SavingsAccount
+            {
+                ApplicationUserId = User.Identity.GetUserId()
+            };
+            return View(account);
         }
 
         // POST: SavingsAccount/Create
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name")] SavingsAccount account)
         {
-            account.ApplicationUserId = User.Identity.GetUserId();
             if (!ModelState.IsValid) return View(account);
 
             db.SavingsAccounts.Add(account);
