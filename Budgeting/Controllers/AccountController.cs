@@ -137,7 +137,7 @@ namespace Budgeting.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return HttpNotFound();
+            //return HttpNotFound();
             return View();
         }
 
@@ -148,7 +148,7 @@ namespace Budgeting.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            return HttpNotFound();
+            //return HttpNotFound();
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
