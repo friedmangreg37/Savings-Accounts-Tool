@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using Budgeting.Migrations;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Budgeting.Models
@@ -22,6 +23,12 @@ namespace Budgeting.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            base.OnModelCreating(modelBuilder);
         }
 
         public IDbSet<SavingsAccount> SavingsAccounts { get; set; }
