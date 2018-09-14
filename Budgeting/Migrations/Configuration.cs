@@ -6,7 +6,7 @@ namespace Budgeting.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Budgeting.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
@@ -14,7 +14,7 @@ namespace Budgeting.Migrations
             ContextKey = "Budgeting.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(Budgeting.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //var userStore = new UserStore<ApplicationUser>(context);
             //var userManager = new UserManager<ApplicationUser>(userStore);

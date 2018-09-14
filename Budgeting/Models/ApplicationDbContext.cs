@@ -11,6 +11,8 @@ namespace Budgeting.Models
         //IDbSet<Transaction> Transactions { get; set; }
 
         int SaveChanges();
+        void SetEntityState(object entity, EntityState state);
+        void Dispose();
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
@@ -31,20 +33,13 @@ namespace Budgeting.Models
             base.OnModelCreating(modelBuilder);
         }
 
-        public IDbSet<SavingsAccount> SavingsAccounts { get; set; }
-        public IDbSet<SavingsFund> SavingsFunds { get; set; }
-        //public IDbSet<Transaction> Transactions { get; set; }
-    }
-
-    public class MockApplicationDbContext : IApplicationDbContext
-    {
-        public IDbSet<SavingsAccount> SavingsAccounts { get; set; }
-        public IDbSet<SavingsFund> SavingsFunds { get; set; }
-        //public IDbSet<Transaction> Transactions { get; set; }
-
-        public int SaveChanges()
+        public void SetEntityState(object entity, EntityState state)
         {
-            return 0;
+            Entry(entity).State = state;
         }
+
+        public IDbSet<SavingsAccount> SavingsAccounts { get; set; }
+        public IDbSet<SavingsFund> SavingsFunds { get; set; }
+        //public IDbSet<Transaction> Transactions { get; set; }
     }
 }

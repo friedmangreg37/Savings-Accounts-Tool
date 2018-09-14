@@ -77,11 +77,13 @@ namespace Budgeting.Controllers
             return RedirectToAction("Index");
         }
 
-        //[Authorize(Roles = "Admin")]
-        //public ActionResult BreakdownForAdmin(int id)
-        //{
-        //    var account = db.SavingsAccounts.Find(id);
-        //    return View("Breakdown", account);
-        //}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

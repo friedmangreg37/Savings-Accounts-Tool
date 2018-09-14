@@ -8,12 +8,24 @@ namespace Budgeting.Controllers
     [Authorize]
     public class SavingsFundController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IApplicationDbContext db;
+
+        public SavingsFundController()
+        {
+            db = new ApplicationDbContext();
+        }
+
+        public SavingsFundController(IApplicationDbContext dbContext)
+        {
+            db = dbContext;
+        }
 
         public ActionResult Create(int accountID)
         {
-            ViewBag.AccountId = accountID;
-            return View();
+            if (db.SavingsAccounts.Find(accountID) == null) return HttpNotFound();
+
+            var fund = new SavingsFund {AccountID = accountID};
+            return View(fund);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -28,7 +40,7 @@ namespace Budgeting.Controllers
 
         public ActionResult Edit(int id)
         {
-            SavingsFund fund = db.SavingsFunds.Find(id);
+            var fund = db.SavingsFunds.Find(id);
             if (fund == null) return HttpNotFound();
 
             return View(fund);
@@ -39,7 +51,7 @@ namespace Budgeting.Controllers
         {
             if (!ModelState.IsValid) return View(fund);
 
-            db.Entry(fund).State = EntityState.Modified;
+            db.SetEntityState(fund, EntityState.Modified);
             db.SaveChanges();
             return RedirectToAction("Breakdown", "SavingsAccount", new {id = fund.AccountID});
         }
@@ -52,7 +64,7 @@ namespace Budgeting.Controllers
             if (fund == null) return HttpNotFound();
 
             fund.Withdraw(amount);
-            db.Entry(fund).State = EntityState.Modified;
+            db.SetEntityState(fund, EntityState.Modified);
             db.SaveChanges();
             return RedirectToAction("Breakdown", "SavingsAccount", new { id = fund.AccountID });
         }
