@@ -1,24 +1,15 @@
 ﻿using System.Data.Entity;
-using System.Net;
 using System.Web.Mvc;
 using Budgeting.Models;
 
 namespace Budgeting.Controllers
 {
     [Authorize]
-    public class SavingsFundController : Controller
+    public class SavingsFundController : BudgetingBaseController
     {
-        private IApplicationDbContext db;
+        public SavingsFundController() : base() { }
 
-        public SavingsFundController()
-        {
-            db = new ApplicationDbContext();
-        }
-
-        public SavingsFundController(IApplicationDbContext dbContext)
-        {
-            db = dbContext;
-        }
+        public SavingsFundController(IApplicationDbContext dbContext) : base(dbContext) { }
 
         public ActionResult Create(int accountID)
         {
@@ -71,15 +62,6 @@ namespace Budgeting.Controllers
             db.SavingsFunds.Remove(fund);
             db.SaveChanges();
             return RedirectToAction("Breakdown", "SavingsAccount", new {id = fund.AccountID});
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

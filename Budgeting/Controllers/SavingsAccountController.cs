@@ -8,19 +8,10 @@ using System.Web.Mvc;
 namespace Budgeting.Controllers
 {
     [Authorize]
-    public class SavingsAccountController : Controller
+    public class SavingsAccountController : BudgetingBaseController
     {
-        private IApplicationDbContext db;
-
-        public SavingsAccountController()
-        {
-            db = new ApplicationDbContext();
-        }
-
-        public SavingsAccountController(IApplicationDbContext dbContext)
-        {
-            db = dbContext;
-        }
+        public SavingsAccountController() : base() { }
+        public SavingsAccountController(IApplicationDbContext dbContext) : base(dbContext) { }
 
         public ActionResult Index()
         {
@@ -103,15 +94,6 @@ namespace Budgeting.Controllers
         public virtual void LoadSavingsFunds(SavingsAccount account)
         {
             account.Funds = db.SavingsFunds.Where(f => f.AccountID == account.Id).ToList();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
