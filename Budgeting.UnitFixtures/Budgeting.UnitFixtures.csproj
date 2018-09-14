@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\TestSavingsAccountController.cs" />
     <Compile Include="Controllers\TestSavingsFundController.cs" />
     <Compile Include="Models\TestSavingsFund.cs" />
     <Compile Include="Models\TestSavingsAccount.cs" />

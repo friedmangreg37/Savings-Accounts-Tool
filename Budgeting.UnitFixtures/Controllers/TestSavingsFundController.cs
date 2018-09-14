@@ -59,7 +59,7 @@ namespace Budgeting.UnitFixtures.Controllers
             var result = controller.Create(fund) as ViewResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(fund, result.Model as SavingsFund);
+            Assert.AreEqual(fund, result.Model);
         }
 
         [Test]
@@ -70,6 +70,7 @@ namespace Budgeting.UnitFixtures.Controllers
 
             var result = controller.Create(fund) as RedirectToRouteResult;
 
+            mockFunds.Verify(f => f.Add(fund), Times.Once);
             mockDbContext.Verify(c => c.SaveChanges(), Times.Once);
             Assert.IsNotNull(result);
             Assert.AreEqual(result.RouteValues["action"], "Breakdown");
@@ -96,7 +97,7 @@ namespace Budgeting.UnitFixtures.Controllers
             var result = controller.Edit(fund.Id) as ViewResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(fund, result.Model as SavingsFund);
+            Assert.AreEqual(fund, result.Model);
         }
 
         [Test]
@@ -108,7 +109,7 @@ namespace Budgeting.UnitFixtures.Controllers
             var result = controller.Edit(fund) as ViewResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(fund, result.Model as SavingsFund);
+            Assert.AreEqual(fund, result.Model);
         }
 
         [Test]
@@ -145,7 +146,7 @@ namespace Budgeting.UnitFixtures.Controllers
             var result = controller.Delete(fund.Id) as ViewResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(fund, result.Model as SavingsFund);
+            Assert.AreEqual(fund, result.Model);
         }
 
         [Test]

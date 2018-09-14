@@ -1,5 +1,6 @@
 ﻿using Budgeting.Models;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,16 +10,22 @@ namespace Budgeting.Controllers
     [Authorize]
     public class SavingsAccountController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IApplicationDbContext db;
+
+        public SavingsAccountController()
+        {
+            db = new ApplicationDbContext();
+        }
+
+        public SavingsAccountController(IApplicationDbContext dbContext)
+        {
+            db = dbContext;
+        }
 
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
-            var userAccounts = db.SavingsAccounts.Where(s => s.ApplicationUserId == userId).ToList();
-            foreach (var account in userAccounts)
-            {
-                account.Funds = db.SavingsFunds.Where(f => f.AccountID == account.Id).ToList();
-            }
+            var userAccounts = GetAccountsByUser(GetUserId());
+
             return View(userAccounts);
         }
 
@@ -26,7 +33,7 @@ namespace Budgeting.Controllers
         {
             SavingsAccount account = new SavingsAccount
             {
-                ApplicationUserId = User.Identity.GetUserId()
+                ApplicationUserId = GetUserId()
             };
             return View(account);
         }
@@ -46,7 +53,7 @@ namespace Budgeting.Controllers
             var account = db.SavingsAccounts.Find(id);
             if (account == null) return HttpNotFound();
 
-            account.Funds = db.SavingsFunds.Where(f => f.AccountID == account.Id).ToList();
+            LoadSavingsFunds(account);
             return View(account);
         }
 
@@ -55,7 +62,7 @@ namespace Budgeting.Controllers
         {
             if(!ModelState.IsValid) return View(account);
 
-            db.Entry(account).State = EntityState.Modified;
+            db.SetEntityState(account, EntityState.Modified);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -75,6 +82,27 @@ namespace Budgeting.Controllers
             db.SavingsAccounts.Remove(account);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public virtual string GetUserId()
+        {
+            return User.Identity.GetUserId();
+        }
+
+        public virtual List<SavingsAccount> GetAccountsByUser(string userId)
+        {
+            // maybe wanna pull this out into a service class or something
+            var userAccounts = db.SavingsAccounts.Where(s => s.ApplicationUserId == userId).ToList();
+            foreach (var account in userAccounts)
+            {
+                LoadSavingsFunds(account);
+            }
+            return userAccounts;
+        }
+
+        public virtual void LoadSavingsFunds(SavingsAccount account)
+        {
+            account.Funds = db.SavingsFunds.Where(f => f.AccountID == account.Id).ToList();
         }
 
         protected override void Dispose(bool disposing)
