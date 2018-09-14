@@ -206,7 +206,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\FakeDbSet.cs" />
     <Compile Include="Models\SavingsAccount.cs" />
     <Compile Include="Models\SavingsFund.cs" />
     <Compile Include="Models\IdentityModels.cs" />
