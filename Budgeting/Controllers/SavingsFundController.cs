@@ -56,23 +56,8 @@ namespace Budgeting.Controllers
             return RedirectToAction("Breakdown", "SavingsAccount", new {id = fund.AccountID});
         }
 
-        public ActionResult Withdraw(int? id, decimal amount)
+        public ActionResult Delete(int id)
         {
-            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var fund = db.SavingsFunds.Find(id);
-            if (fund == null) return HttpNotFound();
-
-            fund.Withdraw(amount);
-            db.SetEntityState(fund, EntityState.Modified);
-            db.SaveChanges();
-            return RedirectToAction("Breakdown", "SavingsAccount", new { id = fund.AccountID });
-        }
-
-        public ActionResult Delete(int? id)
-        {
-            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
             var fund = db.SavingsFunds.Find(id);
             if (fund == null) return HttpNotFound();
 
