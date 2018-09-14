@@ -8,7 +8,7 @@ namespace Budgeting.UnitFixtures.Controllers
     public class TestHomeController
     {
         [Test]
-        public void Index()
+        public void Test_Index_ReturnsViewResult()
         {
             HomeController controller = new HomeController();
 
@@ -18,7 +18,7 @@ namespace Budgeting.UnitFixtures.Controllers
         }
 
         [Test]
-        public void About()
+        public void Test_About_ReturnsViewResult()
         {
             HomeController controller = new HomeController();
 
@@ -29,7 +29,7 @@ namespace Budgeting.UnitFixtures.Controllers
         }
 
         [Test]
-        public void Contact()
+        public void Test_Contact_ReturnsViewResult()
         {
             HomeController controller = new HomeController();
 
