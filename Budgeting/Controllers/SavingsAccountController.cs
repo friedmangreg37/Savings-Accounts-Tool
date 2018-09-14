@@ -22,7 +22,6 @@ namespace Budgeting.Controllers
             return View(userAccounts);
         }
 
-        // GET: SavingsAccount/Create
         public ActionResult Create()
         {
             SavingsAccount account = new SavingsAccount
@@ -32,7 +31,6 @@ namespace Budgeting.Controllers
             return View(account);
         }
 
-        // POST: SavingsAccount/Create
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,ApplicationUserId")] SavingsAccount account)
         {
@@ -43,7 +41,6 @@ namespace Budgeting.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: SavingsAccount/Breakdown/5
         public ActionResult Breakdown(int id)
         {
             var account = db.SavingsAccounts.Find(id);
@@ -53,7 +50,6 @@ namespace Budgeting.Controllers
             return View(account);
         }
 
-        // POST: SavingsAccount/Breakdown/5
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Breakdown(SavingsAccount account)
         {
@@ -64,7 +60,6 @@ namespace Budgeting.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: SavingsAccount/Delete/5
         public ActionResult Delete(int id)
         {
             var account = db.SavingsAccounts.Find(id);
@@ -73,7 +68,6 @@ namespace Budgeting.Controllers
             return View(account);
         }
 
-        // POST: SavingsAccount/Delete/5
         [HttpPost, ActionName("Delete"), ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

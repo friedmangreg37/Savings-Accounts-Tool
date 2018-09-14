@@ -17,13 +17,31 @@ namespace Budgeting.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,AmountPerMonth,Balance,AccountID")] SavingsFund savingsFund)
+        public ActionResult Create([Bind(Include = "Id,Name,AmountPerMonth,Balance,AccountID")] SavingsFund fund)
         {
-            if (!ModelState.IsValid) return View(savingsFund);
+            if (!ModelState.IsValid) return View(fund);
 
-            db.SavingsFunds.Add(savingsFund);
+            db.SavingsFunds.Add(fund);
             db.SaveChanges();
-            return RedirectToAction("Breakdown", "SavingsAccount", new { id = savingsFund.AccountID });
+            return RedirectToAction("Breakdown", "SavingsAccount", new {id = fund.AccountID});
+        }
+
+        public ActionResult Edit(int id)
+        {
+            SavingsFund fund = db.SavingsFunds.Find(id);
+            if (fund == null) return HttpNotFound();
+
+            return View(fund);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(SavingsFund fund)
+        {
+            if (!ModelState.IsValid) return View(fund);
+
+            db.Entry(fund).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Breakdown", "SavingsAccount", new {id = fund.AccountID});
         }
 
         public ActionResult Withdraw(int? id, decimal amount)
@@ -55,7 +73,7 @@ namespace Budgeting.Controllers
             var fund = db.SavingsFunds.Find(id);
             db.SavingsFunds.Remove(fund);
             db.SaveChanges();
-            return RedirectToAction("Breakdown", "SavingsAccount", new { id = fund.AccountID });
+            return RedirectToAction("Breakdown", "SavingsAccount", new {id = fund.AccountID});
         }
 
         protected override void Dispose(bool disposing)

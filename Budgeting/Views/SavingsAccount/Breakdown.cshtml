@@ -69,6 +69,7 @@
                             @Html.ActionLink("Withdraw", "Create", "Transaction", new { fundId = fund.Id, type = Transaction.TransactionType.Withdraw }, null)
                         </td>
                         <td>
+                            @Html.ActionLink("Edit", "Edit", "SavingsFund", new { id = fund.Id }, null) |
                             @Html.ActionLink("Delete", "Delete", "SavingsFund", new { id = fund.Id }, null)
                         </td>
                     </tr>
