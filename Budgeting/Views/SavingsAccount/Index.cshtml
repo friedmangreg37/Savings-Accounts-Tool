@@ -7,9 +7,9 @@
 <h2>Savings Accounts</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
+<table class="table" style="width:50%">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -29,8 +29,8 @@
             @Html.DisplayFor(modelItem => item.SumOfFunds)
         </td>
         <td>
-            @Html.ActionLink("Breakdown", "Breakdown", new { id=item.Id }, new { @class = "btn btn-default" })
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Breakdown", "Breakdown", new { id=item.Id }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
