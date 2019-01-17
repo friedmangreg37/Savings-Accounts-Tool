@@ -39,8 +39,6 @@ namespace Budgeting.Models
                 case TransactionType.Withdraw:
                     SavingsFund.Withdraw(Amount);
                     break;
-                default:
-                    break;
             }
         }
     }
