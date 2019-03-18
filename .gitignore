@@ -1,0 +1,5 @@
+TestResults/
+*.DotSettings
+*.user
+bin/
+obj/
