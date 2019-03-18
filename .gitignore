@@ -3,3 +3,5 @@ TestResults/
 *.user
 bin/
 obj/
+.vs/
+SavingsAccountOrganizer - Web Deploy.pubxml
