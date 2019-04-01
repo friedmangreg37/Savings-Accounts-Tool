@@ -38,7 +38,7 @@
             @Html.HiddenFor(model => model.ApplicationUserId)
 
             <h4>Funds</h4>
-            <table class="table" style="width:75%">
+            <table class="table" style="width:100%">
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
@@ -61,10 +61,14 @@
                             @Html.DisplayFor(f => fund.Balance)
                         </td>
                         <td>
-                            @Html.ActionLink("Deposit", "Create", "Transaction", new { fundId = fund.Id, type = Transaction.TransactionType.Deposit }, new { @class = "btn btn-info" })
-                            @Html.ActionLink("Withdraw", "Create", "Transaction", new { fundId = fund.Id, type = Transaction.TransactionType.Withdraw }, new { @class = "btn btn-default" })
-                            @Html.ActionLink("Edit", "Edit", "SavingsFund", new { id = fund.Id }, new { @class = "btn btn-warning" })
-                            @Html.ActionLink("Delete", "Delete", "SavingsFund", new { id = fund.Id }, new { @class = "btn btn-danger" })
+                            <div class="btn-group-vertical">
+                                @Html.ActionLink("Deposit", "Create", "Transaction", new {fundId = fund.Id, type = Transaction.TransactionType.Deposit}, new {@class = "btn btn-info"})
+                                @Html.ActionLink("Withdraw", "Create", "Transaction", new {fundId = fund.Id, type = Transaction.TransactionType.Withdraw}, new {@class = "btn btn-default"})
+                            </div>
+                            <div class="btn-group-vertical">
+                                @Html.ActionLink("Edit", "Edit", "SavingsFund", new { id = fund.Id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("Delete", "Delete", "SavingsFund", new { id = fund.Id }, new { @class = "btn btn-danger" })
+                            </div>
                         </td>
                     </tr>
                 }
