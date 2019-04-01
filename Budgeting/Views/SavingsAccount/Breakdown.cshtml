@@ -44,9 +44,6 @@
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th>
-                        Amount/Month
-                    </th>
-                    <th>
                         Balance
                     </th>
                     <th>
@@ -61,20 +58,13 @@
                             @Html.DisplayFor(f => fund.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(f => fund.AmountPerMonth)
-                        </td>
-                        <td>
                             @Html.DisplayFor(f => fund.Balance)
                         </td>
                         <td>
-                            <div class="btn-group-vertical">
-                                @Html.ActionLink("Deposit", "Create", "Transaction", new {fundId = fund.Id, type = Transaction.TransactionType.Deposit}, new {@class = "btn btn-info"})
-                                @Html.ActionLink("Withdraw", "Create", "Transaction", new {fundId = fund.Id, type = Transaction.TransactionType.Withdraw}, new {@class = "btn btn-default"})
-                            </div>
-                            <div class="btn-group-vertical">
-                                @Html.ActionLink("Edit", "Edit", "SavingsFund", new { id = fund.Id }, new { @class = "btn btn-warning" })
-                                @Html.ActionLink("Delete", "Delete", "SavingsFund", new { id = fund.Id }, new { @class = "btn btn-danger" })
-                            </div>
+                            @Html.ActionLink("Deposit", "Create", "Transaction", new { fundId = fund.Id, type = Transaction.TransactionType.Deposit }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Withdraw", "Create", "Transaction", new { fundId = fund.Id, type = Transaction.TransactionType.Withdraw }, new { @class = "btn btn-default" })
+                            @Html.ActionLink("Edit", "Edit", "SavingsFund", new { id = fund.Id }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Delete", "Delete", "SavingsFund", new { id = fund.Id }, new { @class = "btn btn-danger" })
                         </td>
                     </tr>
                 }
@@ -89,6 +79,8 @@
         </div>
     </div>
 }
+
+<link href="~/Content/Site.css" rel="stylesheet" />
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

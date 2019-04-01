@@ -10,10 +10,6 @@ namespace Budgeting.Models
 
         public string Name { get; set; }
 
-        [Display(Name = "Amount/Month"), DataType(DataType.Currency)]
-        [Range(0, double.MaxValue, ErrorMessage = "Amount must be greater than or equal to $0")]
-        public decimal AmountPerMonth { get; set; }
-
         [DataType(DataType.Currency), Range(0, double.MaxValue, ErrorMessage = "Balance must be greater than or equal to $0")]
         public decimal Balance { get; set; }
 

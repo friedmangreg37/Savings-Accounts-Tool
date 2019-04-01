@@ -20,7 +20,7 @@ namespace Budgeting.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,AmountPerMonth,Balance,AccountID")] SavingsFund fund)
+        public ActionResult Create([Bind(Include = "Id,Name,Balance,AccountID")] SavingsFund fund)
         {
             if (!ModelState.IsValid) return View(fund);
 

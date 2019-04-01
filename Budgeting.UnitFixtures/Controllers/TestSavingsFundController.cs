@@ -66,7 +66,7 @@ namespace Budgeting.UnitFixtures.Controllers
         public void Test_CreatePost_ValidModelState_SavesToDB()
         {
             controller.ModelState.Clear();
-            var fund = new SavingsFund {AccountID = 1, AmountPerMonth = 50, Balance = 50, Name = "Test Fund"};
+            var fund = new SavingsFund {AccountID = 1, Balance = 50, Name = "Test Fund"};
 
             var result = controller.Create(fund) as RedirectToRouteResult;
 
@@ -116,7 +116,7 @@ namespace Budgeting.UnitFixtures.Controllers
         public void Test_EditPost_ValidModelState_SavesToDB()
         {
             controller.ModelState.Clear();
-            var fund = new SavingsFund { AccountID = 1, AmountPerMonth = 50, Balance = 50, Name = "Test Fund" };
+            var fund = new SavingsFund { AccountID = 1, Balance = 50, Name = "Test Fund" };
 
             var result = controller.Edit(fund) as RedirectToRouteResult;
 
