@@ -31,9 +31,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
-            @Html.ActionLink("Back to Breakdown", "Breakdown", "SavingsAccount", new { id = Model.AccountID }, new { @class = "btn btn-default" })
-        </div>
+    <div class="form-actions no-color">
+        @Html.ActionLink("Back to Breakdown", "Breakdown", "SavingsAccount", new { id = Model.AccountID }, new { @class = "btn btn-default" })
+        <input type="submit" value="Delete" class="btn btn-default" />
+    </div>
     }
 </div>

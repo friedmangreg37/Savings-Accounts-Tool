@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table" style="width:50%">
+<table class="table" style="width:75%">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -17,7 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.SumOfFunds)
         </th>
-        <th></th>
+        <th>
+            Actions
+        </th>
     </tr>
 
 @foreach (var item in Model) {
